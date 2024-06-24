@@ -1,0 +1,64 @@
+
+<h1>Suivi des Projets</h1>
+    <h2>État d'Avancement des Tâches et Projets</h2>
+
+    <!-- Exemple pour Projet 1 -->
+    <h3>Projet 1</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Tâche</th>
+            <th>Employé</th>
+            <th>Date de debut</th>
+            <th>Date de fin</th>
+            <th>Heures allouées</th>
+            <th>Avancement (%)</th>
+            <th>État</th>
+            <th>Message du Chef</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let person of peopleList" >
+            <td>{{person.Tache}}</td>
+            <td>{{person.Employe}}</td>
+            <td>{{ person.Datededebut }}</td>
+            <td>{{ person.Datedefin }}</td>
+            <td>{{person.Heuresallouees}}</td>
+            <td>{{person.Avancement}}</td>
+            <td class="warning">{{person.Etat}}</td>
+            <td class="warning">{{person.MessageduChef}}</td>
+        </tr>
+        </tbody>
+       
+        <!-- Ajouter d'autres tâches -->
+    </table>
+
+    <!-- Exemple pour Projet 2 -->
+    <h3>Projet 2</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Tâche</th>
+                <th>Employé</th>
+                <th>Date de debut</th>
+                <th>Date de fin</th>
+                <th>Heures allouées</th>
+                <th>Avancement (%)</th>
+                <th>État</th>
+                <th>Message du Chef</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let person of peopleList2" >
+                    <td>{{person.Tache}}</td>
+                    <td>{{person.Employe}}</td>
+                    <td>{{ person.Datededebut }}</td>
+                    <td>{{ person.Datedefin }}</td>
+                    <td>{{person.Heuresallouees}}</td>
+                    <td>{{person.Avancement}}</td>
+                    <td class="warning">{{person.Etat}}</td>
+                    <td class="warning">{{person.MessageduChef}}</td>
+                </tr>
+                </tbody>
+        <!-- Ajouter d'autres tâches -->
+    </table>

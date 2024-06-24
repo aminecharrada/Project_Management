@@ -1,0 +1,12 @@
+<div class="container-fluid"> <!-- Use container-fluid instead of container -->
+    <header class="d-flex flex-wrap align-items-center justify-content-between py-3 mb-4 border-bottom"> <!-- Remove justify-content-center and justify-content-md-between -->
+        <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+            <img [src]="imageUrl" alt="enova robotic logo" class="bi me-2" width="100px" height="32" role="img" aria-label="Bootstrap">
+        </a>
+
+        <div class="col-md-3 text-end">
+            <button type="button" class="btn btn-outline-primary me-2" [routerLink]="['/login']">Login</button>
+            <button type="button" class="btn btn-primary" [routerLink]="['/register']">Sign-up</button>
+        </div>
+    </header>
+</div>
