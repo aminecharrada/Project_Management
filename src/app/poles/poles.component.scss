@@ -1,0 +1,195 @@
+.content-page {
+    position: relative;
+    overflow: hidden;
+    padding: 105px;
+    min-height: 20vh;
+    transition: all 0.3s ease-in-out;
+    background-color: #f8f9fa;
+    background-image: url('/assets/images/gestprojet2.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.content-page::before {
+    background-color: rgba(0, 0, 0, 0.6);
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.toolbar-content {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+mat-toolbar {
+    border: none;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.fab-add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    margin-right: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #673ab7;
+    color: white;
+    border-radius: 25px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.fab-add:hover {
+    background-color: #5e35b1;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.fab-add:focus {
+    outline: none;
+}
+
+.cards {
+    padding: 0;
+    max-width: 850px;
+    margin: 0 auto; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+}
+
+.cards .card {
+    margin: 10px; /* Space between cards */
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 300px; /* Card height */
+    width: 400px; /* Card width */
+}
+
+.cards .card mat-card-header {
+    background-color: #007bff; /* Blue background color */
+    color: white; /* White text color */
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 60px; /* Adjust height if needed */
+    text-align: center; /* Ensure text is centered */
+}
+
+.cards .card mat-card-title {
+    margin: 0; /* Remove default margin */
+    font-size: 1.5rem; /* Adjust font size as needed */
+    font-weight: bold; /* Bold text */
+    line-height: 1.2; /* Adjust line height for better vertical alignment */
+}
+
+
+.parent-container { /* The container holding the .date-container */
+    display: flex; 
+    align-items: center; /* Vertically centers child elements */
+    justify-content: center; /* Optional: Centers the content horizontally as well */
+    height: 100%; /* Ensure the parent container has full height to enable proper centering */
+}
+
+.date-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Adjusts the space between the two items */
+}
+.border-top{
+    padding: 10px;
+}
+.elem-pole {
+    margin-left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+.poleName{
+    margin-left: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #6c757d !important;
+  }  
+.elem-pole-container {
+    display: flex;
+    align-items: center;
+  }
+.pole-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.cards .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.right-date {
+    margin-left: auto;
+  }
+.animate__animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.animate__fadeIn {
+    animation-name: fadeIn;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center align cards horizontally */
+    margin: 0; /* Remove any default margin */
+    padding: 0; /* Remove padding to avoid extra spacing */
+}
+
+.col-lg-6,
+.col-md-8,
+.col-sm-12 {
+    display: flex;
+    justify-content: center; /* Center align cards in columns */
+    padding: 0; /* Remove padding to avoid extra spacing */
+    box-sizing: border-box; /* Ensure padding and borders are included in the element's total width and height */
+}
+.responsable-label {
+    color: #b9b7e7 !important; /* Use only if needed */
+  }
+
+.col-lg-6 {
+    flex: 0 0 auto;
+    max-width: 50%; /* Allow two cards per row */
+}
+
+.col-md-8 {
+    flex: 0 0 auto;
+    max-width: 75%; /* Adjust as needed for smaller screens */
+}
+
+.col-sm-12 {
+    flex: 0 0 auto;
+    max-width: 100%; /* Full width on smallest screens */
+}
+.circle-progress-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px; /* Add space below the circle progress */
+    width: 100%;
+    margin-top: 15px;
+}

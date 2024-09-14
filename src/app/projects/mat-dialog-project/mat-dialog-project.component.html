@@ -1,0 +1,52 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    New
+    <span class="fill-remaining"></span>
+    <button mat-icon-button mat-dialog-close matTooltip="close" class="fab-close">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-toolbar-row>
+  <!-- <mat-toolbar-row fxLayoutAlign="center center">
+    <div class="avatar-container">
+      <img [src]="selectedImageSrc ? getImageUrl(selectedImageSrc) : 'assets/images/user/avatar.jpg'" 
+           alt="Selected Person Image" class="avatar-image">
+    </div>
+  </mat-toolbar-row> -->
+</mat-toolbar>
+
+<form [formGroup]="newContactForm" (ngSubmit)="newContactForm.valid && save()">
+  <div fxLayout="column" fxLayoutAlign="center stretch" class="contact-form">
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Enter the project title" formControlName="title" required>
+      <mat-error *ngIf="newContactForm.get('title')?.hasError('required')">Title is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="Enter the project description" formControlName="description" required></textarea>
+      <mat-error *ngIf="newContactForm.get('description')?.hasError('required')">Description is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Select Responsable</mat-label>
+      <mat-select formControlName="responsableId" (selectionChange)="onPersonChange($event)" required>
+        <mat-option *ngFor="let person of persons" [value]="person.id">
+          {{ person.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="newContactForm.get('responsableId')?.hasError('required')">Responsable is required</mat-error>
+    </mat-form-field>
+
+    <div class="avatar-container">
+      <img [src]="selectedImageSrc ? getImageUrl(selectedImageSrc) : 'assets/images/user/avatar.jpg'" 
+           alt="Selected Person Image" class="avatar-image">
+    </div>
+
+    <button mat-raised-button class="save-button" type="submit" color="accent" [disabled]="newContactForm.invalid">
+      Save
+    </button>
+
+  </div>
+</form>

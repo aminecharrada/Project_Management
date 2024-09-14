@@ -1,0 +1,54 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    New Pole
+    <span class="fill-remaining"></span>
+    <button mat-icon-button mat-dialog-close matTooltip="close" class="fab-close">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-toolbar-row>
+  <!-- <mat-toolbar-row fxLayoutAlign="center center">
+    <div class="avatar-container">
+      <input type="file" id="file-input" (change)="onFileChange($event)" accept="image/*" style="display: none;">
+      <div class="avatar" (click)="openFileDialog()">
+        <img *ngIf="avatarSrc; else defaultAvatar" [src]="avatarSrc" alt="Avatar" class="avatar-image">
+        <ng-template #defaultAvatar>
+          <img src="assets/images/user/avatar.jpg" alt="Avatar" class="avatar-image">
+        </ng-template>
+      </div>
+    </div>
+  </mat-toolbar-row> -->
+</mat-toolbar>
+
+<form [formGroup]="newContactForm" (ngSubmit)="newContactForm.valid && save()">
+  <div fxLayout="column" fxLayoutAlign="center stretch" class="contact-form">
+
+    <!-- Name -->
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Pole Name</mat-label>
+      <input matInput placeholder="Enter the pole name here" formControlName="name" required>
+      <mat-icon matSuffix color="accent">person</mat-icon>
+      <mat-hint align="end">{{ newContactForm.get('name')?.value.length }} / 25</mat-hint>
+      <mat-error *ngIf="newContactForm.get('name')?.hasError('required')">Name is required</mat-error>
+      <mat-error *ngIf="newContactForm.get('name')?.hasError('minlength')">The name is too short!</mat-error>
+      <mat-error *ngIf="newContactForm.get('name')?.hasError('maxlength')">The name is too long!</mat-error>
+    </mat-form-field>
+
+    <!-- Person Selection -->
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Select the pole element</mat-label>
+      <mat-select formControlName="personneId" (selectionChange)="onPersonChange($event)" placeholder="Select a person" required>
+        <mat-option *ngFor="let personne of personnes" [value]="personne.id">
+          {{ personne.name }} <!-- Assuming 'name' is the display field for Personne -->
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="newContactForm.get('personneId')?.hasError('required')">Person is required</mat-error>
+    </mat-form-field>
+    <div class="avatar-container">
+      <img [src]="selectedImageSrc ? getImageUrl(selectedImageSrc) : 'assets/images/user/avatar.jpg'" 
+           alt="Selected Person Image" class="avatar-image">
+    </div>
+    <!-- Save Button -->
+    <button mat-raised-button class="save-button" type="submit" color="accent" [disabled]="newContactForm.invalid">Save</button>
+
+  </div>
+</form>

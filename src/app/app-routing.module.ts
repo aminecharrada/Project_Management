@@ -1,38 +1,49 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { PeopleListComponent } from './people-list/people-list.component';
-import { DiagcircComponent } from './diagcirc/diagcirc.component';
-import { CircprogressComponent } from './circprogress/circprogress.component';
+import { PeopleListComponent } from './people/people-list/people-list.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { PolesComponent } from './poles/poles.component';
+import { GanttComponent } from './gantt/gantt.component';
+import { KPIComponent } from './kpi/kpi.component';
+
 
 const routes: Routes = [
   {
-    path:'',
-    component:HomeComponent
+    path: '',
+    component: ProjectsComponent
   },
   {
-    path:'login',
-    component:LoginComponent
+    path: 'login',
+    component: LoginComponent
   },
   {
-    path:'register',
-    component:RegisterComponent
+    path: 'register',
+    component: RegisterComponent
   },
   {
-    path:'people-list',
-    component:PeopleListComponent
+    path: 'people-list',
+    component: PeopleListComponent
   },
-  {
-    path:'diagcirc',
-    component:DiagcircComponent
-  },
-  {
-        path:'circprogress',
-        component:CircprogressComponent
-  },
+  { path: 'gantt/pole/:poleName',
+    component: GanttComponent },
+
+  { path: 'gantt/:projectName', 
+    component: GanttComponent },
+
+   { path: 'gantt', 
+    component: GanttComponent },   
+    
+  { path: 'poles', 
+    component: PolesComponent },
+    { path: 'kpi', 
+      component: KPIComponent},
+
 ];
+const routerOptions: ExtraOptions = {
+  onSameUrlNavigation: 'reload'
+};
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

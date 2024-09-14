@@ -1,0 +1,81 @@
+.fill-remaining {
+  flex: 1 1 auto;
+}
+
+.contact-form {
+  margin: 1rem;
+  max-width: 400px;
+  width: 100%;
+}
+
+.form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.save-button {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.mat-dialog-container {
+  z-index: 1050 !important;
+}
+
+.mat-dialog-backdrop {
+  z-index: 1040 !important;
+}
+
+.fab-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 16px;
+  background-color: #bca3ed;
+  color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  width: 40px;
+  height: 40px;
+}
+
+.fab-close:hover {
+  background-color: #f50057;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.fab-close:focus {
+  outline: none;
+}
+
+.fab-close .mat-icon {
+  color: #ffffff;
+}
+
+/* Ensure that the toolbar has full width and centers content */
+mat-toolbar {
+  width: 100%;
+}
+
+.mat-toolbar-row {
+  display: flex;
+  justify-content: center;
+}
+
+/* Avatar container styles */
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+/* Avatar image styles */
+.avatar-image {
+  width: 80px; /* Adjust the size to make it smaller */
+  height: 80px;
+  border-radius: 50%; /* Make the image circular */
+  object-fit: cover;
+  border: 2px solid #bca3ed; /* Optional border for styling */
+}

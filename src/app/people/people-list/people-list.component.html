@@ -1,0 +1,105 @@
+<div fxLayout="column" fxFlexFill>
+  <div class="container">
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center">
+      <mat-contact-menu *ngIf="enableMenu" fxFlex="none" fxHide.lt-md></mat-contact-menu>
+      <div fxFlex>
+        <mat-progress-bar *ngIf="isLoading" color="accent" mode="query"></mat-progress-bar>
+        <mat-toolbar color="primary">
+          <div *ngIf="selection.selected.length > 0; then contactSelected else none"></div>
+          <ng-template #contactSelected>
+            {{selection.selected.length}}
+            <button mat-icon-button matTooltip="remove" class="fab-delete" (click)="removeSelected()">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </ng-template>
+          <ng-template #none>
+            {{title}}
+          </ng-template>
+          <span class="title-spacing"></span> <!-- Added span for spacing -->
+          <button *ngIf="!readonly"
+                  fxHide.xs
+                  mat-fab
+                  color="accent"
+                  class="fab-add"
+                  matTooltip="add new contact"
+                  (click)="openAddDialogContainer(methods.POST)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </mat-toolbar>
+
+        <div class="example-container mat-elevation-z8" style="margin-bottom: 50px">
+          <mat-table [dataSource]="contactsDataSource" matSort>
+
+            <!-- Select Column -->
+            <ng-container matColumnDef="select">
+              <mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="masterToggle()" [checked]="isAllSelected()"></mat-checkbox>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="select(row)" [checked]="selection.isSelected(row)"></mat-checkbox>
+              </mat-cell>
+            </ng-container>
+
+            <!-- Photo URL Column -->
+            <ng-container matColumnDef="photoURL">
+              <mat-header-cell *matHeaderCellDef>Photo</mat-header-cell>
+              <mat-cell *matCellDef="let contact">
+                <div class="contact-avatar">
+                  <img *ngIf="contact.image" [src]="getImageUrl(contact.image)" alt="Photo" class="avatar-image">
+                  <img *ngIf="!contact.image" src="assets/images/user/avatar.jpg" alt="Default Photo" class="avatar-image">
+                  <span class="contact-name">{{ contact.name }}</span>
+                </div>
+              </mat-cell>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+              <mat-cell *matCellDef="let contact">{{ contact.name }}</mat-cell>
+            </ng-container>
+
+            <!-- Role Column -->
+            <ng-container matColumnDef="role">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Role</mat-header-cell>
+              <mat-cell *matCellDef="let contact">{{ contact.role || 'N/A' }}</mat-cell>
+            </ng-container>
+
+            <!-- Pole Name Column -->
+            <ng-container matColumnDef="poleName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Pole</mat-header-cell>
+              <mat-cell *matCellDef="let contact">{{ contact.poleName || 'N/A' }}</mat-cell>
+            </ng-container>
+
+            <!-- More Options Column -->
+            <ng-container *ngIf="!readonly" matColumnDef="more">
+              <mat-header-cell *matHeaderCellDef class="cell-shrink-more">
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element"
+                        class="cell-shrink-more"
+                        (click)="$event.stopPropagation()">
+                <button mat-icon-button
+                        [matMenuTriggerFor]="posXMenu"
+                        class="mat-24"
+                        aria-label="Open x-positioned menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu xPosition="before" #posXMenu="matMenu">
+                  <button mat-menu-item [disabled]="false" (click)="remove(element)">
+                    <mat-icon>delete</mat-icon>
+                    remove
+                  </button>
+                </mat-menu>
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="contactsDisplayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: contactsDisplayedColumns; matRipple"
+                     (click)="select(row)">
+            </mat-row>
+
+          </mat-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

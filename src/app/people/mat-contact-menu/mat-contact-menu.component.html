@@ -1,0 +1,48 @@
+  <!-- <mat-card class="menu-card mat-elevation-z4">
+      <!--<mat-card-header fxLayoutAlign="center">-->
+      <!--<avatar style="width: 60px;height: 60px"-->
+      <!--[email]="'Your Email'"-->
+      <!--[name]="'Your Name'"-->
+      <!--[displayType]="'circle'">-->
+      <!--</avatar>-->
+      <!--</mat-card-header>-->
+      <mat-card-content>
+    
+        <mat-selection-list #selectionFilter
+                            [ngModel]="selectedFilters"
+                            (ngModelChange)="onSelectedOptionsChange($event)"
+                            (selectionChange)="onSelectedFiltersChange($event)">
+    
+          <mat-list-option #all [value]="filters.ALL"
+                          (click)="all.selected ? selectionFilter.selectAll() : selectionFilter.deselectAll()">
+            <div fxLayout="row">
+              <mat-icon [color]="all.selected ? 'accent':''">done_all</mat-icon>
+              <span class="menu-item"> All contacts</span>
+            </div>
+          </mat-list-option>
+    
+          <mat-list-option #private [value]="filters.PRIVATE">
+            <div fxLayout="row">
+              <mat-icon [color]="private.selected ? 'accent':''">lock</mat-icon>
+              <span class="menu-item"> Private contacts</span>
+            </div>
+          </mat-list-option>
+    
+          <mat-list-option #shared [value]="filters.SHARED">
+            <div fxLayout="row">
+              <mat-icon [color]="shared.selected ? 'accent':''">shared</mat-icon>
+              <span class="menu-item">Shared contacts</span>
+            </div>
+          </mat-list-option>
+    
+          <mat-list-option #recently [value]="filters.RECENTLY">
+            <div fxLayout="row">
+              <mat-icon [color]="recently.selected ? 'accent':''">history</mat-icon>
+              <span class="menu-item">Recently contacted</span>
+            </div>
+          </mat-list-option>
+    
+        </mat-selection-list>
+    
+      </mat-card-content>
+    </mat-card> -->

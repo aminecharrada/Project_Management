@@ -1,0 +1,52 @@
+<div class="content-page">
+    <mat-toolbar>
+        <div class="toolbar-content">
+            <button
+                *ngIf="!readonly"
+                fxHide.xs
+                mat-flat-button
+                color="primary"
+                class="fab-add"
+                matTooltip="Add new pole"
+                (click)="openAddpoleDialogContainer(methods.POST)"
+            >
+                Add Pole
+            </button>
+        </div>
+    </mat-toolbar>
+  
+    <div class="container-fluid">
+        <div id="grid" class="cards animate__animated animate__fadeIn active" data-toggle-extra="tab-content">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 col-sm-12" *ngFor="let pole of poles">
+                    <a [routerLink]="['/gantt/pole', pole.poleName]" class="card-link">
+                        <mat-card class="card">
+                            <mat-card-header>
+                                <mat-card-title class="mb-3"><span class="responsable-label">Pole : </span>{{ pole.poleName }}</mat-card-title>
+                            </mat-card-header>
+                            <div class="card-content">
+                                <mat-card-subtitle class="circle-progress-container">
+                                    <circle-progress [percent]="pole.poleProgress" [space]="-10" [radius]="50" [outerStrokeWidth]="10"
+                                        [innerStrokeWidth]="10" [outerStrokeColor]="'#4882c2'" [innerStrokeColor]="'#e7e8ea'"
+                                        [animation]="true" [animationDuration]="1000">
+                                    </circle-progress>
+                                </mat-card-subtitle>
+                                <div class="border-top">
+                                <span class="poleName ">Pole Responsable Name : </span>
+                                <div class="elem-pole-container">
+                                    <mat-card-subtitle class="elem-pole">
+                                      <i class="las la-calendar-check mr-2"></i>{{ pole.elemPole }}
+                                    </mat-card-subtitle>
+                                    <mat-card-subtitle class="right-date">
+                                      <img *ngIf="pole.elemPoleImage" [src]="getImageUrl(pole.elemPoleImage)" alt="Pole Image" class="pole-avatar">
+                                    </mat-card-subtitle>
+                                  </div>
+                                </div>
+                            </div>
+                        </mat-card>
+                    </a>
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>

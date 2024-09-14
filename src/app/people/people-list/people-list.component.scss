@@ -1,0 +1,164 @@
+
+  
+  .container {
+    position: relative;
+    overflow: hidden;
+    padding-top: 110px; 
+    min-height: 100vh; 
+    width: 100vw;
+    background-image: url('/assets/images/gestprojet2.jpg');
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat; 
+  
+  }
+
+
+  .container::before {
+    content: "";
+    position: fixed; 
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6); 
+    z-index: 1; 
+  }
+  
+ 
+  .container > * {
+    position: relative;
+    z-index: 2; 
+  }
+  
+  h1, h2 {
+    text-align: center;
+    color: white; 
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff;
+    z-index: 2;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  .warning {
+    color: red;
+  }
+  
+  .success {
+    color: green;
+  }
+  .title-spacing {
+    flex: 1; 
+  }
+  
+  .fab-add {
+    display: flex;
+    align-items: center; 
+  justify-content: center; 
+    margin-left: 16px; 
+    background-color: #bca3ed; 
+  color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+  border-radius: 20%; /* Circular shape */
+  transition: background-color 0.3s, box-shadow 0.3s;
+  width: 50px; 
+  height: 50px; 
+  }
+  .fab-add:hover {
+    background-color: #f50057; 
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+  }
+  .fab-add:focus {
+    outline: none;
+  }
+  .fab-add .mat-icon {
+    color: #ffffff; 
+  }
+  
+  .fab-delete {
+    display: flex;
+    align-items: center; 
+  justify-content: center; 
+    margin-left: 16px; 
+    background-color: #bca3ed; 
+  color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+  border-radius: 20%; /* Circular shape */
+  transition: background-color 0.3s, box-shadow 0.3s;
+  width: 50px; 
+  height: 50px; 
+  }
+  .fab-delete:hover {
+    background-color: #f50057; 
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+  }
+  .fab-delete:focus {
+    outline: none;
+  }
+  .fab-delete .mat-icon {
+    color: #ffffff; 
+  }
+  
+  
+  /* Avatar styles */
+  .contact-avatar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .avatar-image {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .contact-name {
+    font-size: 14px;
+  }
+
+
+.cell-shrink-more {
+    padding: 30px; 
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; 
+    height: 100%;
+  }
+  
+  
+  .mat-24 {
+    background-color: transparent;
+    border: none; 
+    padding: 0; 
+    margin: 0; 
+    box-shadow: none; 
+    height: auto; 
+    width: auto; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+  }
+  
+  /* Style for the icon */
+  .mat-24 .mat-icon {
+    font-size: 24px; 
+    color: #333; 
+  }
+  
+  

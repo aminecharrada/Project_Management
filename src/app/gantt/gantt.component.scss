@@ -1,0 +1,22 @@
+@import 'dhtmlx-gantt/codebase/dhtmlxgantt.css';
+
+.gantt-chart {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 80px); /* Adjust based on the navbar height */
+  margin-top: 110px; /* Space below the navbar */
+}
+
+
+
+.weekend {
+  background: #F0DFE5 !important;
+}
+
+.gantt_task_progress {
+  text-align: left;
+  padding-left: 10px;
+  box-sizing: border-box;
+  color: white;
+  font-weight: bold;
+}

@@ -1,0 +1,62 @@
+<div class="content-page">
+    <mat-toolbar>
+      <div class="toolbar-content">
+        <button
+          *ngIf="!readonly"
+          fxHide.xs
+          mat-flat-button
+          color="primary"
+          class="fab-add"
+          matTooltip="Add new pole"
+          (click)="openAddProjectDialogContainer(methods.POST)"
+        >
+          Add Project
+        </button>
+      </div>
+    </mat-toolbar>
+  
+    <div class="container-fluid">
+      <div class="row justify-content-end mb-3"></div>
+      <div id="grid" class="cards animate__animated animate__fadeIn active" data-toggle-extra="tab-content">
+        <div class="row">
+          <div class="col-lg-4 col-md-6" *ngFor="let project of projects">
+            <a [routerLink]="['/gantt', project.title]" class="card-link">
+              <div class="card card-block card-stretch card-height">
+                <div class="card-body">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <a class="btn btn-white text-secondary link-shadow d-flex ms-2" [routerLink]="['/kpi']">KPI</a>
+                    <!-- Conditionally display the retard button only if retard_percent is greater than 0 -->
+                    <a *ngIf="project.retardPercent > 0" class="btn btn-white text-secondary link-shadow d-flex">
+                        {{ project.retardPercent }}% EN RETARD
+                      </a>
+                  </div>
+                  <div>
+                    <circle-progress [percent]="project.progress" [space]="-10" [radius]="50" [outerStrokeWidth]="10"
+                                     [innerStrokeWidth]="10" [outerStrokeColor]="'#4882c2'" [innerStrokeColor]="'#e7e8ea'"
+                                     [animation]="true" [animationDuration]="1000">
+                    </circle-progress>
+                  </div>
+                  <h5 class="project-title mb-1">{{ project.title }}</h5>
+                  <p class="mb-3">{{ project.description }}</p>
+  
+                  <div class="d-flex align-items-center pt-3 border-top">
+                    <span class="responsable-name">
+                      <h5>
+                        <span class="responsable-label">Responsable:</span> {{ project.responsableName }}
+                      </h5>
+                    </span>
+                    <div class="contact-avatar">
+                      <img *ngIf="project.responsableImage" [src]="getImageUrl(project.responsableImage)" alt="Avatar" class="avatar-image me-2">
+                      <img *ngIf="!project.responsableImage" src="assets/default-avatar.png" alt="Default Photo" class="avatar-image">
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
