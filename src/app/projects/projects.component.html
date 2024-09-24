@@ -24,7 +24,7 @@
               <div class="card card-block card-stretch card-height">
                 <div class="card-body">
                   <div class="d-flex align-items-center justify-content-between">
-                    <a class="btn btn-white text-secondary link-shadow d-flex ms-2" [routerLink]="['/kpi']">KPI</a>
+                    <a [routerLink]="['/kpi', project.id]" class="btn btn-white text-secondary link-shadow d-flex">KPI</a>
                     <!-- Conditionally display the retard button only if retard_percent is greater than 0 -->
                     <a *ngIf="project.retardPercent > 0" class="btn btn-white text-secondary link-shadow d-flex">
                         {{ project.retardPercent }}% EN RETARD

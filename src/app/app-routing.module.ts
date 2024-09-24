@@ -37,8 +37,8 @@ const routes: Routes = [
     
   { path: 'poles', 
     component: PolesComponent },
-    { path: 'kpi', 
-      component: KPIComponent},
+    { path: 'kpi/:projectId',
+       component: KPIComponent }
 
 ];
 const routerOptions: ExtraOptions = {

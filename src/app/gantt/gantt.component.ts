@@ -129,7 +129,7 @@ export class GanttComponent implements OnInit, OnDestroy {
       const progress = task.progress ?? 0;
       return "<span style='text-align:left;padding-left: 10px;'>" + Math.round(progress * 100) + "% </span>";
     };
-    gantt.config.duration_unit = "minute";
+    gantt.config.duration_unit = "day";
     const formatter = gantt.ext.formatters.durationFormatter({
       enter: "hour", 
       store: "minute", 
