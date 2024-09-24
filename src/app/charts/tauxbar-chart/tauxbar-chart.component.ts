@@ -72,33 +72,41 @@ export class TauxbarChartComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.projectId = +params['projectId']; // Get the project ID from URL
-      this.fetchDailyProgress();
+      this.fetchRespectDesDelais();
     });
   }
 
-  fetchDailyProgress(): void {
-    this.http.get<{ [date: string]: number }>(`http://localhost:8080/api/kpi/project/${this.projectId}/daily-progress`)
-    .subscribe((data: { [date: string]: number }) => {
-        const dates = Object.keys(data).map(date => date.split(' ')[0]);
-        const dailyProgressValues = Object.values(data);
+  fetchRespectDesDelais(): void {
+    this.http.get<{ [date: string]: number }>(`http://localhost:8080/api/kpi/project/${this.projectId}/respect-delais`)
+      .subscribe((data: { [date: string]: number }) => {
+        const dates = Object.keys(data).map(date => date.split(' ')[0]); // Strip time if needed
+        const respectDelaisValues = Object.values(data);
         
+
         this.barChartData = {
-            labels: dates,
-            datasets: [
-                {
-                    data: dailyProgressValues,
-                    label: 'Daily Progress',
-                    barThickness: 15,
-                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }
-            ]
+          labels: dates,
+          datasets: [
+            {
+              data: respectDelaisValues,
+              label: 'Taux de respect des délais',
+              barThickness: 25,
+              backgroundColor: 'rgba(75, 192, 192, 0.6)', // Light teal
+              borderColor: 'rgba(75, 192, 192, 1)', // Darker teal
+              borderWidth: 2,
+              borderRadius: 10,
+              hoverBackgroundColor: 'rgba(75, 192, 192, 0.8)',
+              hoverBorderColor: 'rgba(75, 192, 192, 1)',
+              hoverBorderWidth: 3,
+              categoryPercentage: 0.8,
+              barPercentage: 1.0
+          }
+          
+          ]
         };
         this.cdr.detectChanges();
-    });
-}
-
+       
+      });
+  }
   
   
 }
