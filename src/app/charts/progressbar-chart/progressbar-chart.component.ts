@@ -36,7 +36,6 @@ export class ProgressbarChartComponent implements OnInit {
     this.http.get<Map<string, number>>(`http://localhost:8080/api/kpi/project/${this.projectId}/daily-progress`).subscribe(data => {
       this.barChartData.labels = Object.keys(data); // This gets the date labels
       this.barChartData.datasets[0].data = Object.values(data); // This gets the progress values
-      console.log(this.barChartData);
       const dates = Object.keys(data).map(date => date.split(' ')[0]);
         const dailyProgressValues = Object.values(data);
       this.barChartData = {
@@ -44,7 +43,7 @@ export class ProgressbarChartComponent implements OnInit {
         datasets: [
           {
             data: dailyProgressValues,
-            label: 'Daily Progress',
+            label: 'Progression',
             barThickness: 50,
             backgroundColor: 'rgba(54, 162, 235, 0.6)', // Light blue
             borderColor: 'rgba(54, 162, 235, 1)', // Darker blue

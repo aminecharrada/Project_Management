@@ -42,8 +42,8 @@ export class TauxbarChartComponent implements OnInit {
         annotations: {
           line1: {
             type: 'line',
-            yMin: 60,
-            yMax: 60,
+            yMin: 100,
+            yMax: 100,
             borderColor: 'rgba(255, 99, 132, 1)',
             borderWidth: 4,
             label: {
@@ -79,7 +79,7 @@ export class TauxbarChartComponent implements OnInit {
   fetchRespectDesDelais(): void {
     this.http.get<{ [date: string]: number }>(`http://localhost:8080/api/kpi/project/${this.projectId}/respect-delais`)
       .subscribe((data: { [date: string]: number }) => {
-        const dates = Object.keys(data).map(date => date.split(' ')[0]); // Strip time if needed
+        const dates = Object.keys(data).map(date => date.split(' ')[0]); 
         const respectDelaisValues = Object.values(data);
         
 
