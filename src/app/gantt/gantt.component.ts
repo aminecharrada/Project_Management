@@ -149,12 +149,24 @@ export class GanttComponent implements OnInit, OnDestroy {
     // Vérification de task['dureeReelle'] et de task.progress
     const dureeReelle = task['dureeReelle'];
     const progress = typeof task.progress === 'number' ? task.progress : 1; // Si undefined, on considère que la tâche est terminée
-    
-    if (dureeReelle && progress < 1) {
-        return "Overdue since " + dureeReelle; // Affiche la date de dépassement
+
+    // Ensure end_date is defined before converting
+    if (task['end_date']) {
+        const end_date = new Date(task['end_date']);
+
+        // Format end_date to get day and month
+        const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long' }; // Correct type declaration
+        const formattedEndDate = end_date.toLocaleDateString('fr-FR', options); // Change 'en-US' to 'fr-FR' for French formatting
+
+        if (dureeReelle && progress < 1) {
+            return "Overdue since " + formattedEndDate; 
+        }
     }
+
     return "";
 };
+
+
 
     gantt.config.duration_unit = "day";
     const formatter = gantt.ext.formatters.durationFormatter({
