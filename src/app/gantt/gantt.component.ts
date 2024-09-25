@@ -129,6 +129,33 @@ export class GanttComponent implements OnInit, OnDestroy {
       const progress = task.progress ?? 0;
       return "<span style='text-align:left;padding-left: 10px;'>" + Math.round(progress * 100) + "% </span>";
     };
+    gantt.templates.task_class = function (start, end, task) {
+      const today = new Date();
+      
+      // Vérifiez si task.end_date est défini
+      const endDate = task.end_date ? new Date(task.end_date) : null;
+  
+      // Vérifiez si task.progress est défini
+      const progress = typeof task.progress === 'number' ? task.progress : 0;
+  
+      // Check if the task is overdue and not finished
+      if (endDate && endDate < today && progress < 1) {
+          return "gantt_critical_task"; // Apply the critical task class
+      }
+      return "";
+  };
+  
+  gantt.templates.rightside_text = function (start, end, task) {
+    // Vérification de task['dureeReelle'] et de task.progress
+    const dureeReelle = task['dureeReelle'];
+    const progress = typeof task.progress === 'number' ? task.progress : 1; // Si undefined, on considère que la tâche est terminée
+    
+    if (dureeReelle && progress < 1) {
+        return "Overdue since " + dureeReelle; // Affiche la date de dépassement
+    }
+    return "";
+};
+
     gantt.config.duration_unit = "day";
     const formatter = gantt.ext.formatters.durationFormatter({
       enter: "hour", 
