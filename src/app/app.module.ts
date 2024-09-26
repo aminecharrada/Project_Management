@@ -131,7 +131,7 @@ registerLocaleData(en);
     NzAvatarModule,
     MatListModule,
     MatDialogModule,
-    AvatarModule,
+    // AvatarModule,
     MatInputModule,
     MatSelectModule,
     MatButtonModule

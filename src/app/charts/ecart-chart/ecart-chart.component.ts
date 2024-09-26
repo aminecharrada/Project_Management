@@ -1,21 +1,22 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import annotationPlugin from 'chartjs-plugin-annotation';
-
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-ecart-chart',
   templateUrl: './ecart-chart.component.html',
   styleUrls: ['./ecart-chart.component.scss']
 })
-export class EcartChartComponent {
+export class EcartChartComponent implements OnInit {
   public lineChartLegend = true;
   public lineChartPlugins = [annotationPlugin];
-
+  projectId?: number;
   public lineChartData: ChartConfiguration<'line'>['data'] = {
-    labels: ['15-Jul', '16-Jul', '17-Jul', '18-Jul', '19-Jul', '20-Jul', '21-Jul', '22-Jul', '23-Jul'],
+    labels: [],
     datasets: [
       {
-        data: [-0.9, -0.6, -0.5, -0.4, -0.3, 0, 0.1, 0.3, 0.4],
+        data: [],
         label: 'écart durée',
         fill: false,
         backgroundColor: 'rgba(153, 102, 255, 0.2)',
@@ -24,7 +25,7 @@ export class EcartChartComponent {
         tension: 0.4,
       },
       {
-        data: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        data: [],
         label: 'référence',
         fill: false,
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
@@ -67,5 +68,52 @@ export class EcartChartComponent {
     }
   };
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private http: HttpClient, private cdr: ChangeDetectorRef) {}
+
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.projectId = +params['projectId'];
+    this.fetchEcartData();
+  });
+  }
+  fetchEcartData(): void {
+    this.http.get<{ [date: string]: number }>(`http://localhost:8080/api/kpi/project/${this.projectId}/ecart`)
+      .subscribe((data: { [date: string]: number }) => {
+        const labels = Object.keys(data);
+        // Map the values, round them to 1 decimal place, and parse them as numbers
+        const ecartDuree = Object.values(data).map(value => parseFloat((value / 1e12).toFixed(1)));
+        console.log(labels)
+        console.log(ecartDuree)
+        // Directly set the labels and datasets
+        this.lineChartData = {
+          labels: labels,  // Flat array of labels
+          datasets: [
+            {
+              data: ecartDuree,  // Flat array of data (numbers)
+              label: 'écart durée',
+              fill: false,
+              backgroundColor: 'rgba(153, 102, 255, 0.2)',
+              borderColor: 'rgba(153, 102, 255, 1)',
+              borderWidth: 1,
+              tension: 0.4,
+            },
+            {
+              data: Array(labels.length).fill(0),  // Flat array of zeros for reference data
+              label: 'référence',
+              fill: false,
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1,
+              tension: 0.4,
+            }
+          ]
+        };
+        this.cdr.detectChanges();  // Ensure change detection
+      });
+  }
+  
+  
+  
+  
+  
 }
