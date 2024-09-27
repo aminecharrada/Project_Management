@@ -1,43 +1,33 @@
+<div nz-row>
+  <!-- Progress bar container -->
+  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzXl="12" style="text-align: center">
+    <!-- Title for the progress bar -->
+    <div class="progress-container">
+      <div class="progress-title">Taux d'avancement</div> <!-- Progress title -->
+      
+      <!-- Corrected Progress bar implementation -->
+      <div role="progressbar" 
+           [attr.aria-valuenow]="progressValue" 
+           aria-valuemin="0" 
+           aria-valuemax="100" 
+           style="--value: {{ progressValue }};">
+      </div> <!-- Semicircle Progress bar -->
+    </div>
+  </div>
+
 
 <div nz-row>
-  <div
-    style="text-align: center"
-    nz-col
-    nzXs="24"
-    nzSm="24"
-    nzMd="24"
-    nzXl="12"
-  >
+  <!-- Existing chart components -->
+  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzXl="12" style="text-align: center">
     <app-ecart-chart-card></app-ecart-chart-card>
   </div>
-  <div
-    style="text-align: center"
-    nz-col
-    nzXs="24"
-    nzSm="24"
-    nzMd="24"
-    nzXl="12"
-  >
+  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzXl="12" style="text-align: center">
     <app-bar-chart-card></app-bar-chart-card>
   </div>
-  <div
-    style="text-align: center"
-    nz-col
-    nzXs="24"
-    nzSm="24"
-    nzMd="24"
-    nzXl="12"
-  >
-  <app-tauxbar-chart-card></app-tauxbar-chart-card>
+  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzXl="12" style="text-align: center">
+    <app-tauxbar-chart-card></app-tauxbar-chart-card>
   </div>
-  <div
-    style="text-align: center"
-    nz-col
-    nzXs="24"
-    nzSm="24"
-    nzMd="24"
-    nzXl="12"
-  >
-  <app-progressbar-chart-card></app-progressbar-chart-card>
-</div>
+  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzXl="12" style="text-align: center">
+    <app-progressbar-chart-card></app-progressbar-chart-card>
+  </div>
 </div>
