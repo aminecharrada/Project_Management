@@ -90,19 +90,35 @@ export class BarChartComponent implements OnInit {
   }
 
   updateChartData(progressData: DailyProgress, productivityData: DailyProductivity): void {
-    const dates = Object.keys(progressData);
-    const dailyProgressValues: number[] = Object.values(progressData);
-    const dailyProductivityValues: number[] = Object.values(productivityData);
+    // Create arrays of entries and sort by date
+    const progressEntries = Object.entries(progressData).map(([date, value]) => ({
+      date: new Date(date), // Convert date string to Date object
+      value: value
+    })).sort((a, b) => a.date.getTime() - b.date.getTime()); // Sort by date
   
-    this.barChartData.labels = dates;
+    const productivityEntries = Object.entries(productivityData).map(([date, value]) => ({
+      date: new Date(date), // Convert date string to Date object
+      value: value
+    })).sort((a, b) => a.date.getTime() - b.date.getTime()); // Sort by date
+  
+    // Extract sorted dates and corresponding values
+    const sortedDates = progressEntries.map(entry => entry.date.toISOString().split('T')[0]); // Format the date as needed
+    const sortedDailyProgressValues = progressEntries.map(entry => entry.value);
+    const sortedDailyProductivityValues = productivityEntries.map(entry => {
+      const index = productivityEntries.findIndex(prod => prod.date.getTime() === entry.date.getTime());
+      return index !== -1 ? productivityEntries[index].value : 0; // Default to 0 if not found
+    });
+  
+    // Set the labels and datasets for the chart
+    this.barChartData.labels = sortedDates; // Set the sorted dates as labels
   
     console.log('Chart labels:', this.barChartData.labels);
-    console.log('Daily progress values:', dailyProgressValues);
-    console.log('Daily productivity values:', dailyProductivityValues);
+    console.log('Daily progress values:', sortedDailyProgressValues);
+    console.log('Daily productivity values:', sortedDailyProductivityValues);
   
     this.barChartData.datasets = [
       {
-        data: dailyProgressValues,
+        data: sortedDailyProgressValues,
         label: 'Avancement',
         barThickness: 50,
         backgroundColor: 'rgba(54, 162, 235, 0.6)',
@@ -116,11 +132,11 @@ export class BarChartComponent implements OnInit {
         barPercentage: 1.0
       },
       {
-        data: dailyProductivityValues,
+        data: sortedDailyProductivityValues,
         label: 'Productivité',
         barThickness: 50,
-        backgroundColor: 'rgba(255, 99, 132, 0.6)', 
-        borderColor: 'rgba(255, 99, 132, 1)', 
+        backgroundColor: 'rgba(255, 99, 132, 0.6)',
+        borderColor: 'rgba(255, 99, 132, 1)',
         borderWidth: 2,
         borderRadius: 10,
         hoverBackgroundColor: 'rgba(255, 99, 132, 0.8)',
@@ -131,7 +147,8 @@ export class BarChartComponent implements OnInit {
       }
     ];
   
-    this.cdr.detectChanges(); 
+    this.cdr.detectChanges(); // Ensure change detection
   }
+  
   
 }

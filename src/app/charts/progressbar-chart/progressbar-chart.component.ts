@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ChartConfiguration } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import zoomPlugin from 'chartjs-plugin-zoom';
+
 @Component({
   selector: 'app-progressbar-chart',
   templateUrl: './progressbar-chart.component.html',
@@ -9,8 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProgressbarChartComponent implements OnInit {
   public barChartLegend = true;
-  public barChartPlugins = [];
   projectId?: number;
+  public barChartPlugins = [zoomPlugin]; 
 
   public barChartData: ChartConfiguration<'bar'>['data'] = {
     labels: [],
@@ -20,7 +22,40 @@ export class ProgressbarChartComponent implements OnInit {
   };
 
   public barChartOptions: ChartConfiguration<'bar'>['options'] = {
-    responsive: false,
+    responsive: true,
+    animation: {
+      duration: 1000,
+      easing: 'easeInOutQuad',
+    },
+    scales: {
+      x: {
+        beginAtZero: true,
+        grid: {
+          display: false
+        }
+      },
+      y: {
+        beginAtZero: true,
+        grid: {
+          display: true,
+          color: 'rgba(200, 200, 200, 0.2)' // Gridline color
+        }
+      }
+    },
+    plugins: {
+      legend: {
+        display: true, // Show legend
+      },
+      tooltip: {
+        enabled: true, // Enable tooltips
+      },
+      zoom: {
+        pan:{
+          enabled:true,
+          mode: 'x'
+        }
+      }
+    }
   };
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {}
@@ -34,15 +69,22 @@ export class ProgressbarChartComponent implements OnInit {
 
   fetchDailyProgress(): void {
     this.http.get<Map<string, number>>(`http://localhost:8080/api/kpi/project/${this.projectId}/daily-progress`).subscribe(data => {
-      this.barChartData.labels = Object.keys(data); // This gets the date labels
-      this.barChartData.datasets[0].data = Object.values(data); // This gets the progress values
-      const dates = Object.keys(data).map(date => date.split(' ')[0]);
-        const dailyProgressValues = Object.values(data);
+      // Create an array of entries and sort by date
+      const entries = Object.entries(data).map(([date, value]) => ({
+        date: new Date(date), // Convert date string to Date object
+        value: value
+      })).sort((a, b) => a.date.getTime() - b.date.getTime()); // Sort by date
+  
+      // Extract sorted dates and corresponding progress values
+      const sortedDates = entries.map(entry => entry.date.toISOString().split('T')[0]); // Format the date as needed
+      const sortedValues = entries.map(entry => entry.value);
+  
+      // Update chart data with sorted dates and values
       this.barChartData = {
-        labels: dates,
+        labels: sortedDates,
         datasets: [
           {
-            data: dailyProgressValues,
+            data: sortedValues,
             label: 'Progression',
             barThickness: 50,
             backgroundColor: 'rgba(54, 162, 235, 0.6)', // Light blue
@@ -54,12 +96,10 @@ export class ProgressbarChartComponent implements OnInit {
             hoverBorderWidth: 3,
             categoryPercentage: 0.8,
             barPercentage: 1.0
-        }
-        
-        
+          }
         ]
-    };
+      };
     });
   }
+  
 }
-

@@ -30,7 +30,6 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { GridComponentComponent } from './grid-component/grid-component.component';
 import { NzGridModule } from 'ng-zorro-antd/grid';
-import { NzCardModule } from 'ng-zorro-antd/card';
 import { BarChartCardComponent } from './cards/bar-chart-card/bar-chart-card.component';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
@@ -55,6 +54,7 @@ import { MatDialogPoleComponent } from './poles/mat-dialog-pole/mat-dialog-pole.
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogProjectComponent } from './projects/mat-dialog-project/mat-dialog-project.component';
 import { TauxbarChartComponent } from './charts/tauxbar-chart/tauxbar-chart.component';
+import { NzCardModule } from 'ng-zorro-antd/card';
 registerLocaleData(en);
 
 @NgModule({

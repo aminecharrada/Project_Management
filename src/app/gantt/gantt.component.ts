@@ -125,10 +125,10 @@ export class GanttComponent implements OnInit, OnDestroy {
 
     gantt.config.process_resource_assignments = true;
     gantt.config.keep_grid_width = true;
-    gantt.templates.progress_text = function (start, end, task) {
-      const progress = task.progress ?? 0;
-      return "<span style='text-align:left;padding-left: 10px;'>" + Math.round(progress * 100) + "% </span>";
-    };
+    // gantt.templates.progress_text = function (start, end, task) {
+    //   const progress = task.progress ?? 0;
+    //   return "<span style='text-align:left;padding-left: 10px;'>" + Math.round(progress * 100) + "% </span>";
+    // };
     gantt.templates.task_class = function (start, end, task) {
       const today = new Date();
       
@@ -165,6 +165,12 @@ export class GanttComponent implements OnInit, OnDestroy {
 
     return "";
 };
+gantt.templates.leftside_text = function (start, end, task) {
+  
+  const progress = Math.round((task.progress || 0) * 100);
+  return progress + "%"; 
+};
+
 
 
 
