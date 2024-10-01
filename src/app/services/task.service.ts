@@ -51,4 +51,7 @@
                 return this.http.get<any[]>('http://localhost:8080/api/personnes')
                     .pipe(catchError(HandleError));
             }
+            getTaskStatus(projectId: number): Observable<any> {
+                return this.http.get<any>(`${this.taskUrl}/${projectId}/tasks-status`);
+              }
         }

@@ -15,6 +15,31 @@
     </div>
   </div>
 
+  
+  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzXl="12" style="text-align: center">
+    <div class="dashboard">
+      <h2 class="dashboard-title">Santé du projet</h2>
+      
+      <div class="metric-container">
+        <div class="metric">
+          <span class="metric-label">Ecart délais</span>
+          <span class="metric-value delay">19% en retard</span> <!-- You can replace this with dynamic value -->
+        </div>
+        
+        <div class="metric">
+          <span class="metric-label">Activités</span>
+          <span class="metric-value activities">{{ incompleteTasks }} non terminées</span>
+        </div>
+        
+        <div class="metric">
+          <span class="metric-label">Progression</span>
+          <span class="metric-value progress">{{ completedTasks }} terminées</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
 
 <div nz-row>
   <!-- Existing chart components -->

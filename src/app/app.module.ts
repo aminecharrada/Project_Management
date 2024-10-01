@@ -55,6 +55,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogProjectComponent } from './projects/mat-dialog-project/mat-dialog-project.component';
 import { TauxbarChartComponent } from './charts/tauxbar-chart/tauxbar-chart.component';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import { TaskService } from './services/task.service';
 registerLocaleData(en);
 
 @NgModule({
@@ -134,9 +135,10 @@ registerLocaleData(en);
     // AvatarModule,
     MatInputModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule
   ],
-  providers: [EditService, ToolbarService, { provide: NZ_I18N, useValue: en_US }],
+  providers: [EditService, ToolbarService, { provide: NZ_I18N, useValue: en_US }, TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

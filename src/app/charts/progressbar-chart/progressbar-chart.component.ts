@@ -3,6 +3,11 @@ import { ChartConfiguration } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import zoomPlugin from 'chartjs-plugin-zoom';
+import { Chart, registerables } from 'chart.js';
+import 'chartjs-plugin-zoom';
+
+// Register necessary components
+Chart.register(...registerables);
 
 @Component({
   selector: 'app-progressbar-chart',

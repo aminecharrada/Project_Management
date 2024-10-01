@@ -77,5 +77,69 @@
     height: 100vh;
     background: #f0f8ff;
   }
+
+  .dashboard {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 10px auto; 
+    background-color: #f9f9f9; 
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dashboard-title {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px;
+    border-radius: 10px 10px 0 0;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  /* Flexbox container for the metrics */
+  .metric-container {
+    display: flex;
+    justify-content: space-between; /* Evenly distribute the metrics */
+    align-items: center; /* Align metrics vertically */
+    gap: 10px; /* Add space between metrics */
+  }
+  
+  .metric {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 8px;
+    flex: 1; /* Make each metric take up equal space */
+    text-align: center; /* Center the text in each metric box */
+  }
+  
+  .metric-label {
+    font-weight: bold;
+    font-size: 1rem; 
+    color: #333;
+    display: block;
+  }
+  
+  .metric-value {
+    font-size: 1rem; 
+    display: block;
+  }
+  
+  .delay {
+    color: #FF6347; /* Red for delay */
+  }
+  
+  .activities {
+    color: #FF8C00; /* Orange for activities */
+  }
+  
+  .progress {
+    color: #32CD32; /* Green for progress */
+  }
+  
+  
   
   
