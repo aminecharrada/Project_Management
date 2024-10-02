@@ -38,7 +38,22 @@
       </mat-select>
       <mat-error *ngIf="newContactForm.get('responsableId')?.hasError('required')">Responsable is required</mat-error>
     </mat-form-field>
-
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Start Date</mat-label>
+      <input matInput [matDatepicker]="startDatePicker" formControlName="startDate" required>
+      <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #startDatePicker></mat-datepicker>
+      <mat-error *ngIf="newContactForm.get('startDate')?.hasError('required')">Start Date is required</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>End Date</mat-label>
+      <input matInput [matDatepicker]="endDatePicker" formControlName="endDate" required>
+      <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #endDatePicker></mat-datepicker>
+      <mat-error *ngIf="newContactForm.get('endDate')?.hasError('required')">End Date is required</mat-error>
+    </mat-form-field>
+    
     <div class="avatar-container">
       <img [src]="selectedImageSrc ? getImageUrl(selectedImageSrc) : 'assets/images/user/avatar.jpg'" 
            alt="Selected Person Image" class="avatar-image">

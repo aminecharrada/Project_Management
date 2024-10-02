@@ -37,9 +37,11 @@ export class MatDialogProjectComponent implements OnInit {
       description: new FormControl('', [
         Validators.required
       ]),
-      responsableId: new FormControl('', [Validators.required])
+      responsableId: new FormControl('', [Validators.required]),
+      startDate: new FormControl('', [Validators.required]),
+      endDate: new FormControl('', [Validators.required])
     });
-
+  
     // Fetch persons to populate the dropdown
     this.personneService.getAllPersonnes().subscribe(
       (persons: Contact[]) => {
@@ -48,6 +50,7 @@ export class MatDialogProjectComponent implements OnInit {
       error => console.error('Error fetching persons', error)
     );
   }
+  
 
   // Update the image when a person is selected
   onPersonChange(event: any) {
@@ -84,10 +87,12 @@ export class MatDialogProjectComponent implements OnInit {
         title: this.newContactForm.get('title')?.value,
         description: this.newContactForm.get('description')?.value,
         responsableId: this.newContactForm.get('responsableId')?.value,
+        startDate: this.newContactForm.get('startDate')?.value,
+        endDate: this.newContactForm.get('endDate')?.value,
         progress: 0,
         retardPercent: 0
       };
-
+  
       this.projectService.createProject(project).subscribe(
         response => {
           console.log('Project created:', response);
@@ -100,4 +105,5 @@ export class MatDialogProjectComponent implements OnInit {
       );
     }
   }
+  
 }

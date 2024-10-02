@@ -17,7 +17,9 @@
 
     projects: Project[] = [];
     contactsDataSource = new MatTableDataSource<Project>(this.projects);
-
+    getRetardPercentInteger(value: number): number {
+      return Math.floor(value);
+    }
     getImageUrl(imageName: string | null): string {
       const url = imageName ? `${this.baseUrl}${imageName}` : 'assets/default-avatar.png';
       return url;
@@ -37,13 +39,12 @@
       this.projectService.getProjects().subscribe({
         next: (data) => {
           this.projects = data;
-          console.log('Projects Data:', this.projects);
           this.contactsDataSource.data = this.projects;
           this.cdRef.detectChanges();
         },
         error: (err) => {
           console.error('An error occurred:', err);
-          // Optionally, display a user-friendly message or handle the error as needed
+        
         }
       });
     }

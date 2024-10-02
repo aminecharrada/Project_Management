@@ -56,6 +56,9 @@ import { MatDialogProjectComponent } from './projects/mat-dialog-project/mat-dia
 import { TauxbarChartComponent } from './charts/tauxbar-chart/tauxbar-chart.component';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { TaskService } from './services/task.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 registerLocaleData(en);
 
 @NgModule({
@@ -136,7 +139,9 @@ registerLocaleData(en);
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [EditService, ToolbarService, { provide: NZ_I18N, useValue: en_US }, TaskService],
   bootstrap: [AppComponent]

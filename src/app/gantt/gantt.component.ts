@@ -153,18 +153,23 @@ export class GanttComponent implements OnInit, OnDestroy {
     // Ensure end_date is defined before converting
     if (task['end_date']) {
         const end_date = new Date(task['end_date']);
+        
+        // Get the current date
+        const currentDate = new Date();
 
         // Format end_date to get day and month
         const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long' }; // Correct type declaration
         const formattedEndDate = end_date.toLocaleDateString('fr-FR', options); // Change 'en-US' to 'fr-FR' for French formatting
 
-        if (dureeReelle && progress < 1) {
+        // Check if the current date is past the end_date
+        if (dureeReelle && progress < 1 && currentDate > end_date) {
             return "Overdue since " + formattedEndDate; 
         }
     }
 
     return "";
 };
+
 gantt.templates.leftside_text = function (start, end, task) {
   
   const progress = Math.round((task.progress || 0) * 100);

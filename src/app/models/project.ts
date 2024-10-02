@@ -6,4 +6,6 @@
         responsableImage!: string | null;
         responsableName!: string;
         retardPercent!: number; 
+        startDate!: Date;
+        endDate!: Date;
     }

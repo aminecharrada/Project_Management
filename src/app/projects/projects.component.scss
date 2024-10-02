@@ -261,3 +261,19 @@ mat-toolbar {
 .d-flex {
   justify-content: space-between; /* Assurez-vous que le texte est aligné à gauche et l'image à droite */
 }
+.date-container {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: #555; // You can customize the color as needed
+}
+
+.date-text {
+  margin-left: 4px; // Adds space between the icon and the text
+}
+
+.mat-icon {
+  font-size: 18px; // Adjusts icon size
+  color: #4882c2; // Color of the icon
+}
