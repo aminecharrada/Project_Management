@@ -58,6 +58,7 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { TaskService } from './services/task.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { TaskDialogComponent } from './people/task-dialog/task-dialog.component';
 
 registerLocaleData(en);
 
@@ -84,6 +85,7 @@ registerLocaleData(en);
     MatContactDialogComponent,
     MatDialogPoleComponent,
     MatDialogProjectComponent,
+    TaskDialogComponent,
     
     
   ],

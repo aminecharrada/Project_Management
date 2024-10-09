@@ -30,13 +30,16 @@
         <div class="example-container mat-elevation-z8" style="margin-bottom: 50px">
           <mat-table [dataSource]="contactsDataSource" matSort>
 
-            <!-- Select Column -->
             <ng-container matColumnDef="select">
               <mat-header-cell *matHeaderCellDef>
                 <mat-checkbox (change)="masterToggle()" [checked]="isAllSelected()"></mat-checkbox>
               </mat-header-cell>
               <mat-cell *matCellDef="let row">
-                <mat-checkbox (click)="$event.stopPropagation()" (change)="select(row)" [checked]="selection.isSelected(row)"></mat-checkbox>
+                <mat-checkbox
+                  (click)="$event.stopPropagation()"
+                  (change)="toggleSelection(row)"
+                  [checked]="selection.isSelected(row)">
+                </mat-checkbox>
               </mat-cell>
             </ng-container>
 
@@ -91,12 +94,13 @@
                 </mat-menu>
               </mat-cell>
             </ng-container>
-
             <mat-header-row *matHeaderRowDef="contactsDisplayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: contactsDisplayedColumns; matRipple"
-                     (click)="select(row)">
-            </mat-row>
 
+          
+          <mat-row *matRowDef="let row; columns: contactsDisplayedColumns;" 
+           matRipple 
+           (click)="openTaskDialog(row)">
+          </mat-row>
           </mat-table>
         </div>
       </div>

@@ -8,6 +8,7 @@ import { Contact, IContactDialogData } from '../../interface/contact';
 import { MatContactDialogComponent } from '../mat-contact-dialog/mat-contact-dialog.component';
 import { Filter, Methods } from '../../enums/enums';
 import { MatSelectionListChange } from '@angular/material/list';
+import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
 
 @Component({
   selector: 'app-people-list',
@@ -93,18 +94,25 @@ export class PeopleListComponent implements OnInit, OnChanges, OnDestroy {
     const numRows = this.contactsDataSource.data.length;
     return numSelected === numRows;
   }
-
+  toggleSelection(row: any): void {
+    if (this.selection.isSelected(row)) {
+      this.selection.deselect(row); // Deselect if already selected
+    } else {
+      this.selection.select(row); // Select if not selected
+    }
+  }
+  
   masterToggle() {
     this.isAllSelected()
       ? this.selection.clear()
       : this.contactsDataSource.data.forEach((row) => this.selection.select(row));
   }
 
-  select(row: any) {
-    if (!this.readonly) {
-      this.selection.toggle(row);
-    }
-  }
+  // select(row: any) {
+  //   if (!this.readonly) {
+  //     this.selection.toggle(row);
+  //   }
+  // }
 
   openAddDialogContainer(method: Methods) {
     const dialogRef = this.dialog.open(MatContactDialogComponent, {
@@ -131,7 +139,17 @@ export class PeopleListComponent implements OnInit, OnChanges, OnDestroy {
       }
     });
   }
-
+  openTaskDialog(contact: Contact): void {
+    const dialogRef = this.dialog.open(TaskDialogComponent, {
+      width: '400px',
+      data: { personId: contact.id, personName: contact.name }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle after dialog close if needed
+    });
+  }
+  
   add(contact: Contact) {
     this.contactsDataSource.data.splice(0, 0, contact);
     this.onContactAdded.emit(contact);

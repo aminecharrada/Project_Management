@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Tasks of {{ personName }}</h1>
+<div mat-dialog-content>
+  <p>Total Tasks: {{ totalTasks }}</p>
+  <mat-list>
+    <mat-list-item *ngFor="let task of tasks">
+      {{ task }} 
+    </mat-list-item>
+  </mat-list>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">Close</button>
+</div>

@@ -28,6 +28,11 @@
             getAllTasks(): Observable<TaskDto[]> {
                 return this.http.get<TaskDto[]>(this.taskUrl);
             }
+            getTasksDetailsByPerson(name: string): Observable<{ totalTasks: number; taskNames: string[] }> {
+                return this.http.get<{ totalTasks: number; taskNames: string[] }>(`${this.taskUrl}/tasks/person/${name}/details`)
+                    .pipe(catchError(HandleError));
+            }
+            
 
             createTask(taskDto: TaskDto, projectName: string): Observable<Task> {
                 console.log('Creating task with data:', taskDto);
