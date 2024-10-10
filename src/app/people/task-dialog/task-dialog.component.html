@@ -1,12 +1,21 @@
-<h1 mat-dialog-title>Tasks of {{ personName }}</h1>
-<div mat-dialog-content>
-  <p>Total Tasks: {{ totalTasks }}</p>
-  <mat-list>
+<h1 mat-dialog-title style="font-size: 24px; font-weight: 600; text-align: center; margin-bottom: 16px;">
+  Tasks of {{ personName }}
+</h1>
+
+<div mat-dialog-content style="padding: 0 16px;">
+  <p style="font-size: 16px; margin-bottom: 12px;">Total Tasks: <strong>{{ totalTasks }}</strong></p>
+  
+  <mat-divider></mat-divider>
+
+  <mat-list dense style="max-height: 300px; overflow-y: auto;">
     <mat-list-item *ngFor="let task of tasks">
-      {{ task }} 
+      <!-- <mat-icon matListIcon>task</mat-icon> -->
+      <div matLine>{{ task }}</div>
+      <!-- <mat-divider inset></mat-divider> -->
     </mat-list-item>
   </mat-list>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="close()">Close</button>
+
+<div mat-dialog-actions style="justify-content: center; margin-top: 16px;">
+  <button mat-raised-button color="primary" (click)="close()">Close</button>
 </div>
